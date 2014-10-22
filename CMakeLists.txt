@@ -24,6 +24,9 @@ if(UNIX)
   target_link_libraries(metis m)
 endif()
 export(TARGETS metis FILE ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/metis-${METIS_VERSION}/metis-config.cmake)
+include(CMakePackageConfigHelpers)
+WRITE_BASIC_PACKAGE_VERSION_FILE(${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/metis-${METIS_VERSION}/metis-config-version.cmake
+    VERSION ${METIS_VERSION} COMPATIBILITY SameMajorVersion)
 
 # Tests
 enable_testing()
