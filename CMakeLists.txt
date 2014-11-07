@@ -9,16 +9,16 @@ option(BUILD_TESTS "${PROJECT_NAME} - Build tests" ON)
 file(GLOB metis_sources Lib/*.c)
 
 # Build libmetis.
-add_library(metis STATIC ${metis_sources})
-target_include_directories(metis 
+add_library(metis4 STATIC ${metis_sources})
+target_include_directories(metis4 
     PUBLIC $<BUILD_INTERFACE: Lib>)
-set_target_properties(metis PROPERTIES OUTPUT_NAME metis-${METIS_VERSION})
+set_target_properties(metis4 PROPERTIES OUTPUT_NAME metis-${METIS_VERSION})
 
 if(UNIX)
-  target_link_libraries(metis PUBLIC m)
+  target_link_libraries(metis4 PUBLIC m)
 endif()
 
-install(TARGETS metis 
+install(TARGETS metis4 
     EXPORT metis-config
     DESTINATION lib
     INCLUDES DESTINATION include/metis-${METIS_VERSION})
@@ -35,7 +35,7 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/metis-config-version.cmake
 if (BUILD_TESTS)
     enable_testing()
     add_executable(metistest Test/mtest.c Programs/io.c)
-    target_link_libraries(metistest PRIVATE metis)
+    target_link_libraries(metistest PRIVATE metis4)
     add_test(metistest-4graph metistest ${METIS_SOURCE_DIR}/Graphs/4elt.graph) 
     add_test(metistest-mgraph metistest ${METIS_SOURCE_DIR}/Graphs/test.mgraph)
 endif()
