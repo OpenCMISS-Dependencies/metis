@@ -19,17 +19,17 @@ if(UNIX)
 endif()
 
 install(TARGETS metis4 
-    EXPORT metis-config
+    EXPORT metis4-config
     DESTINATION lib
     INCLUDES DESTINATION include/metis-${METIS_VERSION})
 install(DIRECTORY Lib/ DESTINATION include/metis-${METIS_VERSION}
     FILES_MATCHING PATTERN "*.h")   
-install(EXPORT metis-config DESTINATION lib/cmake/metis-${METIS_VERSION})
+install(EXPORT metis4-config DESTINATION lib/cmake/metis4-${METIS_VERSION})
 include(CMakePackageConfigHelpers)
-WRITE_BASIC_PACKAGE_VERSION_FILE(${CMAKE_CURRENT_BINARY_DIR}/metis-config-version.cmake
+WRITE_BASIC_PACKAGE_VERSION_FILE(${CMAKE_CURRENT_BINARY_DIR}/metis4-config-version.cmake
     VERSION ${METIS_VERSION} COMPATIBILITY SameMajorVersion)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/metis-config-version.cmake
-    DESTINATION lib/cmake/metis-${METIS_VERSION})
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/metis4-config-version.cmake
+    DESTINATION lib/cmake/metis4-${METIS_VERSION})
 
 # Tests
 if (BUILD_TESTS)
